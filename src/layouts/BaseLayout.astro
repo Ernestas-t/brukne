@@ -1,0 +1,32 @@
+---
+import '../styles/global.css';
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+---  
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Bruknė • Lost & Found</title>
+    <!-- AOS CSS -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/aos@2.3.4/dist/aos.css"
+    />
+  </head>
+  <body class="bg-sand text-text font-sans">
+    <LanguageSwitcher />
+    <slot />
+
+    <!-- Load AOS from CDN -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/aos@2.3.4/dist/aos.js';
+        script.onload = function() {
+          AOS.init({ duration: 600, once: true });
+        };
+        document.head.appendChild(script);
+      });
+    </script>
+  </body>
+</html>

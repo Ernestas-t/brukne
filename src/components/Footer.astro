@@ -1,0 +1,76 @@
+---
+import { t, getCurrentLanguage } from '../utils/i18n.js';
+const currentYear = new Date().getFullYear();
+---  
+<footer class="relative py-16 px-4 bg-gradient-to-t from-sand to-blush/30 overflow-hidden">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute top-5 right-10 w-20 h-20 rounded-full bg-brown"></div>
+    <div class="absolute bottom-10 left-1/4 w-12 h-12 rounded-full bg-brown"></div>
+  </div>
+  
+  <div class="relative max-w-4xl mx-auto text-center">
+    <!-- Main Message -->
+    <div 
+      class="mb-8"
+      data-aos="fade-up"
+      data-aos-duration="1000"
+    >
+      <h3 class="text-2xl md:text-3xl font-bold text-text mb-4" data-translate="footer.title">
+        Ačiū, kad jums rūpi 💝
+      </h3>
+      <p class="text-lg text-text/70 font-light max-w-2xl mx-auto leading-relaxed" data-translate="footer.message">
+        Kiekvienas pasidalijimas, kiekvienas žvilgsnis, kiekviena gera mintis priartina Bruknę prie namų. 
+        Jūsų užuojauta mums reiškia viską.
+      </p>
+    </div>
+    
+    <!-- Paw Print Divider -->
+    <div 
+      class="flex items-center justify-center gap-2 mb-8"
+      data-aos="fade-up"
+      data-aos-delay="200"
+      data-aos-duration="1000"
+    >
+      <div class="w-16 h-px bg-brown/30"></div>
+      <span class="text-2xl animate-pulse">🐾</span>
+      <div class="w-16 h-px bg-brown/30"></div>
+    </div>
+    
+    <!-- Final Message -->
+    <div 
+      class="text-brown font-medium"
+      data-aos="fade-up"
+      data-aos-delay="100"
+      data-aos-duration="800"
+      data-aos-offset="50"
+    >
+      <p data-translate="footer.madeWith">Sukurta su ❤️ mūsų mylimai Bruknei</p>
+      <p class="text-sm mt-2 text-text/60">© <span id="current-year">{currentYear}</span> • <span data-translate="footer.copyright">Padėkite ją parsinešti namo</span></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  import { t, getCurrentLanguage } from '../utils/i18n.js';
+  
+  // Function to update footer content
+  function updateFooterContent(lang) {
+    const elements = document.querySelectorAll('[data-translate]');
+    elements.forEach(element => {
+      const key = element.getAttribute('data-translate');
+      element.textContent = t(key, lang);
+    });
+  }
+  
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const currentLang = getCurrentLanguage();
+    updateFooterContent(currentLang);
+  });
+  
+  // Listen for language changes
+  window.addEventListener('languageChanged', function(event) {
+    updateFooterContent(event.detail.language);
+  });
+</script>

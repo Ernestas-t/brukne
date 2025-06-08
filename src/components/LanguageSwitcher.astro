@@ -1,0 +1,62 @@
+---
+import { languages } from '../utils/i18n.js';
+---
+
+<div class="absolute top-4 right-4 z-50">
+  <div 
+    class="bg-white/80 backdrop-blur-md rounded-full p-2 shadow-lg border border-white/50"
+    data-aos="fade-down"
+    data-aos-duration="1000"
+    data-aos-delay="1000"
+  >
+    <div class="flex gap-1">
+      {Object.entries(languages).map(([code, name]) => (
+        <button
+          class={`px-3 py-2 text-sm font-medium rounded-full transition-all duration-300 language-btn ${code === 'lt' ? 'bg-brown text-white' : 'text-text/70 hover:text-text hover:bg-brown/10'}`}
+          data-lang={code}
+        >
+          {code.toUpperCase()}
+        </button>
+      ))}
+    </div>
+  </div>
+</div>
+
+<script>
+  import { getCurrentLanguage } from '../utils/i18n.js';
+  
+  // Initialize language switcher
+  document.addEventListener('DOMContentLoaded', function() {
+    const currentLang = getCurrentLanguage();
+    updateLanguageButtons(currentLang);
+    updatePageContent(currentLang);
+    
+    // Add click handlers to language buttons
+    document.querySelectorAll('.language-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const selectedLang = this.dataset.lang;
+        localStorage.setItem('language', selectedLang);
+        updateLanguageButtons(selectedLang);
+        updatePageContent(selectedLang);
+      });
+    });
+  });
+  
+  function updateLanguageButtons(activeLang) {
+    document.querySelectorAll('.language-btn').forEach(btn => {
+      if (btn.dataset.lang === activeLang) {
+        btn.className = 'px-3 py-2 text-sm font-medium rounded-full transition-all duration-300 language-btn bg-brown text-white';
+      } else {
+        btn.className = 'px-3 py-2 text-sm font-medium rounded-full transition-all duration-300 language-btn text-text/70 hover:text-text hover:bg-brown/10';
+      }
+    });
+  }
+  
+  function updatePageContent(lang) {
+    // This will be handled by each component individually
+    document.documentElement.setAttribute('data-lang', lang);
+    
+    // Trigger custom event for components to update
+    window.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
+  }
+</script>

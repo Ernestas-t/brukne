@@ -1,0 +1,179 @@
+---
+import { Phone, Mail, Facebook, Instagram } from 'lucide-astro';
+import { t, getCurrentLanguage } from '../utils/i18n.js';
+
+const contacts = [
+  { 
+    name: 'Erika Mušauskaitė', 
+    role: 'Mama', 
+    phone: '+370 630 18 354',
+    email: 'erikamusauskaite@gmail.com',
+    facebook: 'https://www.facebook.com/erika.musauskaite',
+    instagram: 'https://www.instagram.com/erikamusauskaite/'
+  },
+  { 
+    name: 'Ernestas Tautkus', 
+    role: 'Tėtis', 
+    phone: '+370 663 57 166',
+    email: 'ernestas.tautkus@proton.me',
+    facebook: 'https://www.facebook.com/ernestas.tautkus',
+    instagram: 'https://www.instagram.com/ernestas.t/'
+  }
+];
+---
+<section id="contact" class="relative py-20 px-4 bg-gradient-to-br from-blush via-blush/80 to-sand overflow-hidden">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute top-10 left-10 w-32 h-32 rounded-full bg-brown"></div>
+    <div class="absolute bottom-20 right-20 w-24 h-24 rounded-full bg-brown"></div>
+    <div class="absolute top-1/2 left-1/4 w-16 h-16 rounded-full bg-brown"></div>
+  </div>
+  
+  <div class="relative max-w-4xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h2 
+        class="text-4xl md:text-5xl font-bold text-text mb-4"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-translate="contact.title"
+      >
+        Radote mane? Susijunkime! 🏠
+      </h2>
+      <p 
+        class="text-lg md:text-xl text-text/70 font-light max-w-2xl mx-auto"
+        data-aos="fade-up"
+        data-aos-delay="200"
+        data-aos-duration="1000"
+        data-translate="contact.subtitle"
+      >
+        Labai dėkojame už pagalbą. Susisiekite bet kuriuo iš šių būdų — atsakysime nedelsiant!
+      </p>
+    </div>
+
+    <!-- Contact Cards -->
+    <div class="grid md:grid-cols-2 gap-8">
+      {contacts.map((contact, index) => (
+        <div 
+          class="group relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 border border-white/50"
+          data-aos="fade-up"
+          data-aos-delay={300 + (index * 200)}
+          data-aos-duration="1000"
+        >
+          <!-- Gradient Background on Hover -->
+          <div class="absolute inset-0 bg-gradient-to-br from-brown/5 to-blush/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          
+          <!-- Content -->
+          <div class="relative space-y-6">
+            <!-- Header -->
+            <div class="text-center pb-4 border-b border-brown/10">
+              <h3 class="text-2xl font-bold text-text mb-1">{contact.name}</h3>
+              <p class="text-brown font-medium text-lg">{contact.role}</p>
+            </div>
+
+            <!-- Contact Methods -->
+            <div class="space-y-4">
+              <!-- Phone -->
+              <a
+                href={`tel:${contact.phone.replace(/[^0-9]/g,'')}`}
+                class="flex items-center gap-4 p-4 bg-gradient-to-r from-brown/5 to-brown/10 rounded-2xl hover:from-brown/10 hover:to-brown/15 transition-all duration-300 group/item"
+              >
+                <div class="w-12 h-12 bg-brown/20 rounded-xl flex items-center justify-center group-hover/item:bg-brown/30 transition-colors duration-300">
+                  <Phone class="w-5 h-5 text-brown" />
+                </div>
+                <div>
+                  <p class="font-semibold text-text" data-translate="contact.callNow">Skambinti dabar</p>
+                  <p class="text-brown font-medium">{contact.phone}</p>
+                </div>
+              </a>
+
+              <!-- Email -->
+              <a
+                href={`mailto:${contact.email}`}
+                class="flex items-center gap-4 p-4 bg-gradient-to-r from-blush/30 to-blush/20 rounded-2xl hover:from-blush/40 hover:to-blush/30 transition-all duration-300 group/item"
+              >
+                <div class="w-12 h-12 bg-blush/40 rounded-xl flex items-center justify-center group-hover/item:bg-blush/50 transition-colors duration-300">
+                  <Mail class="w-5 h-5 text-brown" />
+                </div>
+                <div>
+                  <p class="font-semibold text-text" data-translate="contact.email">El. paštas</p>
+                  <p class="text-brown font-medium">{contact.email}</p>
+                </div>
+              </a>
+
+              <!-- Social Media -->
+              <div class="flex gap-3">
+                <a
+                  href={contact.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex-1 flex items-center justify-center gap-2 p-4 bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl hover:from-blue-100 hover:to-blue-150 transition-all duration-300 group/social"
+                >
+                  <Facebook class="w-5 h-5 text-blue-600" />
+                  <span class="font-semibold text-blue-700 group-hover/social:text-blue-800" data-translate="contact.facebook">Facebook</span>
+                </a>
+                
+                <a
+                  href={contact.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex-1 flex items-center justify-center gap-2 p-4 bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl hover:from-pink-100 hover:to-purple-100 transition-all duration-300 group/social"
+                >
+                  <Instagram class="w-5 h-5 text-pink-600" />
+                  <span class="font-semibold text-purple-700 group-hover/social:text-purple-800" data-translate="contact.instagram">Instagram</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Emergency Note -->
+    <div 
+      class="mt-12 text-center p-6 bg-white/60 backdrop-blur-md rounded-2xl border border-white/50"
+      data-aos="fade-up"
+      data-aos-delay="800" 
+      data-aos-duration="1000"
+    >
+      <p class="text-brown font-medium text-lg" data-translate="contact.emergency">
+        🚨 <strong>Skubiai?</strong> Skambinkite nedelsiant — esame pasiekiami 24/7!
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { t, getCurrentLanguage } from '../utils/i18n.js';
+  
+  // Function to update contact content
+  function updateContactContent(lang) {
+    const elements = document.querySelectorAll('[data-translate]');
+    elements.forEach(element => {
+      const key = element.getAttribute('data-translate');
+      const translatedText = t(key, lang);
+      
+      // Handle HTML content with <strong> tags for emergency message
+      if (key === 'contact.emergency') {
+        if (lang === 'lt') {
+          element.innerHTML = '🚨 <strong>Skubiai?</strong> Skambinkite nedelsiant — esame pasiekiami 24/7!';
+        } else {
+          element.innerHTML = '🚨 <strong>Emergency?</strong> Call immediately — we\'re available 24/7!';
+        }
+      } else {
+        element.textContent = translatedText;
+      }
+    });
+  }
+  
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const currentLang = getCurrentLanguage();
+    updateContactContent(currentLang);
+  });
+  
+  // Listen for language changes
+  window.addEventListener('languageChanged', function(event) {
+    updateContactContent(event.detail.language);
+  });
+</script>

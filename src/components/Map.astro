@@ -1,0 +1,125 @@
+---
+import { MapPin, Navigation, ExternalLink } from 'lucide-astro';
+import { t, getCurrentLanguage } from '../utils/i18n.js';
+
+// Replace with your actual coordinates and address
+const location = {
+  address: "Naugarduko g. 62, Vilnius, Lithuania",
+  coordinates: {
+    lat: 54.671731374735174,
+    lng: 25.261640977447176
+  }
+};
+---
+
+<section id="map" class="relative py-20 px-4 bg-gradient-to-b from-white via-sand/50 to-blush/30 overflow-hidden">
+  <!-- Background Pattern -->
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute top-16 right-8 w-28 h-28 rounded-full bg-brown"></div>
+    <div class="absolute bottom-16 left-12 w-20 h-20 rounded-full bg-brown"></div>
+    <div class="absolute top-1/3 left-1/3 w-12 h-12 rounded-full bg-brown"></div>
+  </div>
+  
+  <div class="relative max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h2 
+        class="text-4xl md:text-5xl font-bold text-text mb-6"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-translate="map.title"
+      >
+        Mūsų namų adresas 🏠
+      </h2>
+      <p 
+        class="text-lg md:text-xl text-text/70 font-light max-w-2xl mx-auto"
+        data-aos="fade-up"
+        data-aos-delay="200"
+        data-aos-duration="1000"
+        data-translate="map.subtitle"
+      >
+        Jei rasite Bruknę, čia ji priklauso. Galite ją atvesti čia tiesiogiai arba pirmiau susisiekti su mumis.
+      </p>
+    </div>
+
+    <!-- Map and Address Container -->
+    <div class="space-y-8">
+      
+      <!-- Featured Map -->
+      <div 
+        class="relative"
+        data-aos="fade-up"
+        data-aos-delay="300"
+        data-aos-duration="1000"
+      >
+        <div class="group relative overflow-hidden rounded-3xl bg-white/60 backdrop-blur-sm p-6 hover:bg-white/80 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
+          <!-- Map Container - Much Larger -->
+          <div class="relative h-[500px] md:h-[600px] rounded-2xl overflow-hidden cursor-pointer">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2307.15322158561!2d25.261640977447176!3d54.671731374735174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dd946fcec827cd%3A0xe3377ded51d04475!2sNaugarduko%20g.%2062%2C%20Vilnius%2C%2003203%20Vilniaus%20m.%20sav.%2C%20Lithuania!5e0!3m2!1sen!2sse!4v1749387895453!5m2!1sen!2sse"
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              class="rounded-2xl"
+            ></iframe>
+            
+            <!-- Click Overlay -->
+            <div class="absolute inset-0 bg-transparent hover:bg-black/5 transition-colors duration-300 flex items-center justify-center">
+              <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg">
+                <span class="text-sm font-medium text-text flex items-center gap-2">
+                  <MapPin class="w-4 h-4" />
+                  <span data-translate="map.clickToOpen">Spustelėkite, kad atidarytumėte žemėlapyje</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Address Info Centered Below Map -->
+      <div 
+        class="flex justify-center"
+        data-aos="fade-up"
+        data-aos-delay="500"
+        data-aos-duration="1000"
+      >
+        <div class="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-lg border border-white/50 max-w-md">
+          <div class="text-center">
+            <div class="w-12 h-12 bg-brown/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+              <MapPin class="w-6 h-6 text-brown" />
+            </div>
+            <h3 class="text-xl font-bold text-text mb-3" data-translate="map.address">Mūsų adresas</h3>
+            <p class="text-text/70 leading-relaxed">{location.address}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { t, getCurrentLanguage } from '../utils/i18n.js';
+  
+  // Function to update map content
+  function updateMapContent(lang) {
+    const elements = document.querySelectorAll('[data-translate]');
+    elements.forEach(element => {
+      const key = element.getAttribute('data-translate');
+      element.textContent = t(key, lang);
+    });
+  }
+  
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const currentLang = getCurrentLanguage();
+    updateMapContent(currentLang);
+  });
+  
+  // Listen for language changes
+  window.addEventListener('languageChanged', function(event) {
+    updateMapContent(event.detail.language);
+  });
+</script>

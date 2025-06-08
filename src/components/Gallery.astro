@@ -1,0 +1,127 @@
+---
+import { t, getCurrentLanguage } from '../utils/i18n.js';
+
+const images = [
+  'Brukne 1.JPEG',
+  'Brukne 2.JPG', 
+  'Brukne 3.JPG',
+  'Brukne 4.JPEG',
+  'Brukne 5.JPEG',
+  'Brukne 6.JPEG',
+  'Brukne 7.JPEG',
+  'Brukne 8.JPEG',
+  'Brukne 9.JPEG'
+];
+---
+<section id="gallery" class="relative py-20 px-4 bg-gradient-to-b from-sand via-white to-blush/20 overflow-hidden">
+  <!-- Background Elements -->
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute top-20 left-5 w-32 h-32 rounded-full bg-brown"></div>
+    <div class="absolute bottom-10 right-10 w-24 h-24 rounded-full bg-brown"></div>
+  </div>
+  
+  <div class="relative max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h2 
+        class="text-4xl md:text-5xl font-bold text-text mb-6"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-translate="gallery.title"
+      >
+        Susipažinkite su mūsų Brukne 📸
+      </h2>
+      <p 
+        class="text-lg md:text-xl text-text/70 font-light max-w-2xl mx-auto"
+        data-aos="fade-up"
+        data-aos-delay="200"
+        data-aos-duration="1000"
+        data-translate="gallery.subtitle"
+      >
+        Šie nuotraukos padės ją atpažinti. Ji ne tik augintinis — ji šeimos narė.
+      </p>
+    </div>
+
+    <!-- Mobile: Enhanced Horizontal Scroll -->
+    <div class="md:hidden">
+      <div class="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {images.map((img, i) => (
+          <div 
+            class="group flex-none w-80 snap-start"
+            data-aos="fade-right" 
+            data-aos-delay={i * 100}
+            data-aos-duration="1000"
+          >
+            <div class="relative overflow-hidden rounded-3xl bg-white/80 backdrop-blur-sm p-4 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105">
+              <img
+                src={`/photos/${img}`}
+                alt={`Brukne ${i+1}`}
+                class="w-full h-80 rounded-2xl object-cover"
+              />
+              <!-- Overlay on hover -->
+              <div class="absolute inset-4 bg-gradient-to-t from-black/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <!-- Scroll Hint -->
+      <div class="flex justify-center mt-8">
+        <div class="flex items-center gap-2 text-brown/60">
+          <span class="text-sm font-medium" data-translate="gallery.swipeHint">Braukite, kad pamatytumėte daugiau</span>
+          <div class="flex gap-1">
+            <div class="w-2 h-2 rounded-full bg-brown/30"></div>
+            <div class="w-2 h-2 rounded-full bg-brown/60"></div>
+            <div class="w-2 h-2 rounded-full bg-brown/30"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Desktop: Enhanced Grid Layout -->
+    <div class="hidden md:block">
+      <div class="grid grid-cols-3 gap-8">
+        {images.map((img, i) => (
+          <div 
+            class="group relative overflow-hidden rounded-3xl bg-white/60 backdrop-blur-sm p-4 hover:bg-white/80 transition-all duration-500 hover:scale-105 hover:shadow-2xl"
+            data-aos="zoom-in"
+            data-aos-delay={i * 100}
+            data-aos-duration="1000"
+          >
+            <img
+              src={`/photos/${img}`}
+              alt={`Brukne ${i+1}`}
+              class="w-full h-auto rounded-2xl object-cover"
+            />
+            <!-- Subtle overlay -->
+            <div class="absolute inset-4 bg-gradient-to-t from-black/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { t, getCurrentLanguage } from '../utils/i18n.js';
+  
+  // Function to update gallery content
+  function updateGalleryContent(lang) {
+    const elements = document.querySelectorAll('[data-translate]');
+    elements.forEach(element => {
+      const key = element.getAttribute('data-translate');
+      element.textContent = t(key, lang);
+    });
+  }
+  
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const currentLang = getCurrentLanguage();
+    updateGalleryContent(currentLang);
+  });
+  
+  // Listen for language changes
+  window.addEventListener('languageChanged', function(event) {
+    updateGalleryContent(event.detail.language);
+  });
+</script>

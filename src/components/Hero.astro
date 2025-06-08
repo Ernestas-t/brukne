@@ -1,0 +1,93 @@
+---
+import { t, getCurrentLanguage } from '../utils/i18n.js';
+---
+<section class="relative h-screen overflow-hidden">
+  <!-- Background Image with Parallax Effect -->
+  <div 
+    class="absolute inset-0 bg-cover bg-center scale-110 transition-transform duration-[20s] ease-out"
+    style="background-image:url('/photos/Brukne 1.JPEG')"
+    data-aos="zoom-out" 
+    data-aos-duration="2000"
+  ></div>
+  
+  <!-- Gradient Overlays for Better Text Readability -->
+  <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/60"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/10"></div>
+  
+  <!-- Content Container -->
+  <div class="relative h-full flex flex-col items-center justify-center px-4 text-center">
+    
+    <!-- Main Heading with Staggered Animation -->
+    <div class="space-y-4 mb-8">
+      <h1 
+        class="text-5xl md:text-7xl lg:text-8xl font-bold text-white leading-tight hero-title"
+        data-aos="fade-up" 
+        data-aos-delay="300"
+        data-aos-duration="1000"
+      >
+        <span data-translate="hero.title">Susipažinkite su Brukne</span>
+      </h1>
+      
+      <div 
+        class="flex items-center justify-center gap-3 text-2xl md:text-4xl"
+        data-aos="fade-up" 
+        data-aos-delay="600"
+        data-aos-duration="1000"
+      >
+        <span class="text-white font-light hero-subtitle" data-translate="hero.subtitle">Mūsų mylima kompanionė</span>
+        <span class="text-4xl md:text-5xl animate-bounce">🐾</span>
+      </div>
+    </div>
+
+    <!-- CTA Button -->
+    <button 
+      class="group relative px-8 py-4 bg-white/10 backdrop-blur-md border border-white/30 rounded-full text-white font-semibold text-lg transition-all duration-300 hover:bg-white/20 hover:scale-105 hover:shadow-2xl hero-cta"
+      data-aos="fade-up" 
+      data-aos-delay="900"
+      data-aos-duration="1000"
+      onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})"
+    >
+      <span class="relative z-10" data-translate="hero.cta">Padėkite ją surasti</span>
+      <div class="absolute inset-0 bg-gradient-to-r from-blush/20 to-brown/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+    </button>
+
+    <!-- Scroll Indicator -->
+    <div 
+      class="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+      data-aos="fade-up" 
+      data-aos-delay="1200"
+      data-aos-duration="1000"
+    >
+      <div class="flex flex-col items-center gap-2 text-white/80">
+        <span class="text-sm font-light tracking-widest hero-scroll" data-translate="hero.scroll">SLINKTI</span>
+        <div class="w-6 h-10 border-2 border-white/40 rounded-full flex justify-center">
+          <div class="w-1 h-3 bg-white/60 rounded-full mt-2 animate-bounce"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { t, getCurrentLanguage } from '../utils/i18n.js';
+  
+  // Function to update hero content
+  function updateHeroContent(lang) {
+    const elements = document.querySelectorAll('[data-translate]');
+    elements.forEach(element => {
+      const key = element.getAttribute('data-translate');
+      element.textContent = t(key, lang);
+    });
+  }
+  
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const currentLang = getCurrentLanguage();
+    updateHeroContent(currentLang);
+  });
+  
+  // Listen for language changes
+  window.addEventListener('languageChanged', function(event) {
+    updateHeroContent(event.detail.language);
+  });
+</script>
