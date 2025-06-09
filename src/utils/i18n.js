@@ -79,10 +79,13 @@ export const translations = {
     // Age formatting
     "age.year": "metai",
     "age.years": "metų",
+    "age.yearsNominative": "metai", // 2-9 years
     "age.month": "mėnuo",
-    "age.months": "mėnesių",
+    "age.months": "mėnesių", // 10+ months
+    "age.monthsNominative": "mėnesiai", // 2-9 months
     "age.day": "diena",
     "age.days": "dienų",
+    "age.daysNominative": "dienos", // 2-9 days
     "age.justBorn": "Ką tik gimė!",
   },
   en: {

@@ -66,8 +66,9 @@ const brukneFacts = {
     <div class="text-center mb-16">
       <h2 
         class="text-4xl md:text-5xl font-bold text-text mb-6"
-        data-aos="fade-up"
-        data-aos-duration="1000"
+        data-aos="slide-down"
+        data-aos-duration="700"
+        data-aos-easing="ease-out-quart"
         data-translate="about.title"
       >
         Apie Bruknę 💕
@@ -75,8 +76,9 @@ const brukneFacts = {
       <p 
         class="text-lg md:text-xl text-text/70 font-light max-w-2xl mx-auto"
         data-aos="fade-up"
-        data-aos-delay="200"
-        data-aos-duration="1000"
+        data-aos-delay="150"
+        data-aos-duration="600"
+        data-aos-easing="ease-out-cubic"
         data-translate="about.subtitle"
       >
         Geriau pažinkite mūsų mielą mergaitę. Šie duomenys gali padėti atpažinti jos charakterį ir saugiai prie jos prieiti.
@@ -86,18 +88,48 @@ const brukneFacts = {
     <!-- Age Card - Featured -->
     <div 
       class="mb-12 flex justify-center"
-      data-aos="fade-up"
-      data-aos-delay="300"
-      data-aos-duration="1000"
+      data-aos="zoom-in-up"
+      data-aos-delay="200"
+      data-aos-duration="600"
+      data-aos-easing="ease-out-back"
     >
-      <div class="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-lg border border-white/50 max-w-md w-full">
+      <div class="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-lg border border-white/50 max-w-md w-full hover:shadow-xl hover:scale-[1.02] transition-all duration-500 transform-gpu">
         <div class="text-center">
-          <div class="w-16 h-16 bg-brown/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+          <div 
+            class="w-16 h-16 bg-brown/20 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-transform duration-300 hover:scale-110"
+            data-aos="flip-left"
+            data-aos-delay="400"
+            data-aos-duration="500"
+          >
             <Calendar class="w-8 h-8 text-brown" />
           </div>
-          <h3 class="text-2xl font-bold text-text mb-2" data-translate="about.age">Amžius</h3>
-          <p class="text-xl text-brown font-semibold mb-2" id="age-display">...</p>
-          <p class="text-text/60 text-sm" data-translate="about.born">Gimė 2025 m. sausio 22 d.</p>
+          <h3 
+            class="text-2xl font-bold text-text mb-2" 
+            data-aos="fade-up"
+            data-aos-delay="450"
+            data-aos-duration="400"
+            data-translate="about.age"
+          >
+            Amžius
+          </h3>
+          <p 
+            class="text-xl text-brown font-semibold mb-2" 
+            id="age-display"
+            data-aos="fade-up"
+            data-aos-delay="500"
+            data-aos-duration="400"
+          >
+            ...
+          </p>
+          <p 
+            class="text-text/60 text-sm" 
+            data-aos="fade-up"
+            data-aos-delay="550"
+            data-aos-duration="400"
+            data-translate="about.born"
+          >
+            Gimė 2025 m. sausio 22 d.
+          </p>
         </div>
       </div>
     </div>
@@ -107,22 +139,41 @@ const brukneFacts = {
       
       <!-- Favorite Foods -->
       <div 
-        class="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-lg border border-white/50 hover:shadow-xl transition-all duration-500 hover:scale-105"
-        data-aos="fade-up"
-        data-aos-delay="400"
-        data-aos-duration="1000"
+        class="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-lg border border-white/50 hover:shadow-xl transition-all duration-500 hover:scale-[1.03] hover:-rotate-1 transform-gpu group"
+        data-aos="slide-right"
+        data-aos-delay="300"
+        data-aos-duration="600"
+        data-aos-easing="ease-out-cubic"
       >
         <div class="text-center mb-6">
-          <div class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-            <Utensils class="w-6 h-6 text-orange-600" />
+          <div 
+            class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-200 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12"
+            data-aos="bounce-in"
+            data-aos-delay="500"
+            data-aos-duration="400"
+          >
+            <Utensils class="w-6 h-6 text-orange-600 group-hover:text-orange-700 transition-colors duration-300" />
           </div>
-          <h3 class="text-xl font-bold text-text mb-4" data-translate="about.favoriteFood">Mėgstamas maistas</h3>
+          <h3 
+            class="text-xl font-bold text-text mb-4 group-hover:text-orange-600 transition-colors duration-300" 
+            data-aos="fade-up"
+            data-aos-delay="550"
+            data-aos-duration="400"
+            data-translate="about.favoriteFood"
+          >
+            Mėgstamas maistas
+          </h3>
         </div>
         <div class="space-y-3" id="favorite-foods">
           {brukneFacts.favoriteFood.map((food, index) => (
-            <div class="flex items-center gap-3 p-3 bg-orange-50/50 rounded-xl">
-              <span class="text-orange-500">🍖</span>
-              <span class="text-text/80 font-medium" data-translate={food.key}>{food.defaultText}</span>
+            <div 
+              class="flex items-center gap-3 p-3 bg-orange-50/50 rounded-xl hover:bg-orange-100/50 transition-all duration-300 hover:scale-[1.02] cursor-default"
+              data-aos="fade-right"
+              data-aos-delay={600 + (index * 50)}
+              data-aos-duration="300"
+            >
+              <span class="text-orange-500 transition-transform duration-300 hover:scale-125">🍖</span>
+              <span class="text-text/80 font-medium hover:text-text transition-colors duration-300" data-translate={food.key}>{food.defaultText}</span>
             </div>
           ))}
         </div>
@@ -130,22 +181,41 @@ const brukneFacts = {
 
       <!-- What She Likes -->
       <div 
-        class="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-lg border border-white/50 hover:shadow-xl transition-all duration-500 hover:scale-105"
-        data-aos="fade-up"
-        data-aos-delay="500"
-        data-aos-duration="1000"
+        class="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-lg border border-white/50 hover:shadow-xl transition-all duration-500 hover:scale-[1.03] transform-gpu group"
+        data-aos="zoom-in"
+        data-aos-delay="350"
+        data-aos-duration="600"
+        data-aos-easing="ease-out-back"
       >
         <div class="text-center mb-6">
-          <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-            <Play class="w-6 h-6 text-green-600" />
+          <div 
+            class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-green-200 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-12"
+            data-aos="flip-up"
+            data-aos-delay="550"
+            data-aos-duration="400"
+          >
+            <Play class="w-6 h-6 text-green-600 group-hover:text-green-700 transition-colors duration-300" />
           </div>
-          <h3 class="text-xl font-bold text-text mb-4" data-translate="about.lovesToDo">Mėgsta daryti</h3>
+          <h3 
+            class="text-xl font-bold text-text mb-4 group-hover:text-green-600 transition-colors duration-300" 
+            data-aos="fade-up"
+            data-aos-delay="600"
+            data-aos-duration="400"
+            data-translate="about.lovesToDo"
+          >
+            Mėgsta daryti
+          </h3>
         </div>
         <div class="space-y-3" id="activities">
           {brukneFacts.likes.map((activity, index) => (
-            <div class="flex items-center gap-3 p-3 bg-green-50/50 rounded-xl">
-              <span class="text-green-500">🎾</span>
-              <span class="text-text/80 font-medium" data-translate={activity.key}>{activity.defaultText}</span>
+            <div 
+              class="flex items-center gap-3 p-3 bg-green-50/50 rounded-xl hover:bg-green-100/50 transition-all duration-300 hover:scale-[1.02] cursor-default"
+              data-aos="fade-up"
+              data-aos-delay={650 + (index * 50)}
+              data-aos-duration="300"
+            >
+              <span class="text-green-500 transition-transform duration-300 hover:scale-125">🎾</span>
+              <span class="text-text/80 font-medium hover:text-text transition-colors duration-300" data-translate={activity.key}>{activity.defaultText}</span>
             </div>
           ))}
         </div>
@@ -153,22 +223,41 @@ const brukneFacts = {
 
       <!-- Personality -->
       <div 
-        class="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-lg border border-white/50 hover:shadow-xl transition-all duration-500 hover:scale-105"
-        data-aos="fade-up"
-        data-aos-delay="600"
-        data-aos-duration="1000"
+        class="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-lg border border-white/50 hover:shadow-xl transition-all duration-500 hover:scale-[1.03] hover:rotate-1 transform-gpu group"
+        data-aos="slide-left"
+        data-aos-delay="400"
+        data-aos-duration="600"
+        data-aos-easing="ease-out-cubic"
       >
         <div class="text-center mb-6">
-          <div class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-            <Heart class="w-6 h-6 text-pink-600" />
+          <div 
+            class="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-pink-200 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12"
+            data-aos="heart-beat"
+            data-aos-delay="600"
+            data-aos-duration="400"
+          >
+            <Heart class="w-6 h-6 text-pink-600 group-hover:text-pink-700 transition-colors duration-300" />
           </div>
-          <h3 class="text-xl font-bold text-text mb-4" data-translate="about.personality">Charakteris</h3>
+          <h3 
+            class="text-xl font-bold text-text mb-4 group-hover:text-pink-600 transition-colors duration-300" 
+            data-aos="fade-up"
+            data-aos-delay="650"
+            data-aos-duration="400"
+            data-translate="about.personality"
+          >
+            Charakteris
+          </h3>
         </div>
         <div class="space-y-3" id="personality">
           {brukneFacts.personality.map((trait, index) => (
-            <div class="flex items-center gap-3 p-3 bg-pink-50/50 rounded-xl">
-              <span class="text-pink-500">💝</span>
-              <span class="text-text/80 font-medium" data-translate={trait.key}>{trait.defaultText}</span>
+            <div 
+              class="flex items-center gap-3 p-3 bg-pink-50/50 rounded-xl hover:bg-pink-100/50 transition-all duration-300 hover:scale-[1.02] cursor-default"
+              data-aos="fade-left"
+              data-aos-delay={700 + (index * 50)}
+              data-aos-duration="300"
+            >
+              <span class="text-pink-500 transition-transform duration-300 hover:scale-125">💝</span>
+              <span class="text-text/80 font-medium hover:text-text transition-colors duration-300" data-translate={trait.key}>{trait.defaultText}</span>
             </div>
           ))}
         </div>
@@ -179,10 +268,11 @@ const brukneFacts = {
     <div 
       class="mt-12 text-center"
       data-aos="fade-up"
-      data-aos-delay="700"
-      data-aos-duration="1000"
+      data-aos-delay="450"
+      data-aos-duration="600"
+      data-aos-easing="ease-out-cubic"
     >
-      <div class="inline-flex items-center gap-2 px-6 py-3 bg-blush/60 backdrop-blur-md rounded-full border border-brown/20">
+      <div class="inline-flex items-center gap-2 px-6 py-3 bg-blush/60 backdrop-blur-md rounded-full border border-brown/20 hover:bg-blush/70 hover:scale-105 transition-all duration-300 cursor-default">
         <span class="text-brown font-semibold" data-translate="about.safetyNote">Ji draugiška, bet gali būti išsigandusi - artinkitės atsargiai! 🤗</span>
       </div>
     </div>
@@ -192,21 +282,45 @@ const brukneFacts = {
 <script>
   import { t, getCurrentLanguage } from '../utils/i18n.js';
   
+  // Lithuanian plural rules
+  function getLithuanianPluralForm(number, singularKey, pluralKey, nominativeKey) {
+    if (number === 1) return singularKey;
+    if (number >= 2 && number <= 9) return nominativeKey;
+    return pluralKey; // 10+ uses genitive plural
+  }
+  
   // Age calculation and formatting with translations
   function formatAge(age, lang) {
     const parts = [];
     
     if (age.years > 0) {
-      const yearWord = age.years === 1 ? t('age.year', lang) : t('age.years', lang);
-      parts.push(`${age.years} ${yearWord}`);
+      let yearWord;
+      if (lang === 'lt') {
+        yearWord = getLithuanianPluralForm(age.years, 'age.year', 'age.years', 'age.yearsNominative');
+      } else {
+        yearWord = age.years === 1 ? t('age.year', lang) : t('age.years', lang);
+      }
+      parts.push(`${age.years} ${t(yearWord, lang)}`);
     }
+    
     if (age.months > 0) {
-      const monthWord = age.months === 1 ? t('age.month', lang) : t('age.months', lang);
-      parts.push(`${age.months} ${monthWord}`);
+      let monthWord;
+      if (lang === 'lt') {
+        monthWord = getLithuanianPluralForm(age.months, 'age.month', 'age.months', 'age.monthsNominative');
+      } else {
+        monthWord = age.months === 1 ? t('age.month', lang) : t('age.months', lang);
+      }
+      parts.push(`${age.months} ${t(monthWord, lang)}`);
     }
+    
     if (age.days > 0) {
-      const dayWord = age.days === 1 ? t('age.day', lang) : t('age.days', lang);
-      parts.push(`${age.days} ${dayWord}`);
+      let dayWord;
+      if (lang === 'lt') {
+        dayWord = getLithuanianPluralForm(age.days, 'age.day', 'age.days', 'age.daysNominative');
+      } else {
+        dayWord = age.days === 1 ? t('age.day', lang) : t('age.days', lang);
+      }
+      parts.push(`${age.days} ${t(dayWord, lang)}`);
     }
     
     if (parts.length === 0) return t('age.justBorn', lang);
